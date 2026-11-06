@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "OtherSMTP4Gmail",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gmailの作成画面からローカルSMTPプログラムで送信します。",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAunaP1azG7n9Envv3qNVr5oV4nd2TOjriD/V7lX/D6fmTGkFZ+HCJe8Igt1iQ5ljNgz/gRiYAyrISivliIjVAgBz6fnttoXDzCaNcTFDkHZVfD2U3SgQqm01kXnR9T7DVaPkmQJ1EjkYm/snC7ZPDCFqMz2WptJdofKIikQiDl8IKlAuYJZepmdMMHr8E9o5+f4GqlV0o/NK6tf+NcSsn0cqi163sT+hgwaFTXF8AthK7RUfi6WCu7/mZ+AWhv7dDmlz7Sl6wPvtOcInL0r8U24ghSSOMUZJ/wTGJv7y/JfkpejmBhDmR/0vF0NYerFQewMQ03LAlgt0HGz0apdhQhwIDAQAB",
   "permissions": ["nativeMessaging"],
