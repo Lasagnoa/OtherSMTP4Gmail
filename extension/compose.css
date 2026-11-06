@@ -1,0 +1,4 @@
+.lsmtp-row{display:flex;align-items:center;gap:8px;padding:8px 16px;font:14px Arial,sans-serif;color:#202124;background:#fff;border-bottom:1px solid #dadce0}
+.lsmtp-row select{font:15px Arial,sans-serif;max-width:85%;min-height:38px;padding:6px 9px;border:1px solid #dadce0;border-radius:5px;background:#fff;color:#202124}
+.lsmtp-button{border:0;border-radius:18px;padding:0 18px;height:36px;color:white;background:#0b6b57;font:500 14px Arial,sans-serif;cursor:pointer}
+.lsmtp-button:disabled{opacity:.55;cursor:wait}.lsmtp-toast{position:fixed;bottom:24px;left:24px;z-index:2147483647;max-width:520px;padding:14px 18px;border-radius:6px;color:#fff;background:#202124;font:14px/1.5 Arial,sans-serif;box-shadow:0 3px 10px #0004;white-space:pre-wrap}.lsmtp-toast.error{background:#a52219}

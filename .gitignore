@@ -1,0 +1,8 @@
+# 実際の設定・ユーザー環境で生成されるファイル
+smtp.ini
+smtp.ini.*
+native-host.json
+mailsend-go*.exe
+# ローカル検証と配布成果物
+tests/
+Release/

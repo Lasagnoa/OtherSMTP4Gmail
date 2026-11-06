@@ -1,0 +1,16 @@
+.program-card{padding:12px 13px;margin-bottom:20px;border:1px solid #dce9e2;border-radius:11px;background:#fff}
+.program-card label{font-size:12px;font-weight:700;color:#344b42}
+.program-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.program-heading a{font-size:11px;color:#176e5e;text-decoration:none}
+.program-heading a:hover{text-decoration:underline}
+.program-card p{margin:3px 0 8px;color:#74847f;font-size:11px}
+.program-row{display:flex;gap:8px}
+.program-row input{min-width:0;flex:1;border:1px solid #d5e1db;border-radius:7px;padding:7px 9px;color:#1d2925;outline:0}
+.program-row input:focus{border-color:#278d70;box-shadow:0 0 0 3px #30947422}
+.dialog-head{padding:12px 18px 9px}
+.fields{gap:7px 12px;padding:10px 18px 0}
+.field{gap:3px}
+.field input,.field select{height:30px}
+.password-wrap button{height:23px;top:3px}
+.dialog-footer{padding:10px 18px 12px}
+.dialog-footer button{padding:7px 13px}

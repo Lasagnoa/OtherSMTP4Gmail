@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="popup.css"><link rel="stylesheet" href="program.css"><title>OtherSMTP4Gmail</title></head>
+<body>
+  <main class="shell">
+    <header class="topbar"><div class="brand-icon" aria-hidden="true">✉</div><div><div class="eyebrow">GMAIL EXTENSION</div><h1>OtherSMTP4Gmail</h1></div></header>
+    <section class="content" aria-labelledby="accounts-title">
+      <div class="program-card"><div class="program-heading"><label for="mailsend-path">mailsend-goの場所</label><a href="https://github.com/muquit/mailsend-go/releases" target="_blank" rel="noopener noreferrer">配布場所 ↗</a></div><p>実行ファイル名まで含むフルパスを指定します。</p><div class="program-row"><input id="mailsend-path" type="text" spellcheck="false" autocomplete="off" title="mailsend-goのexeファイルのフルパスです。例：C:\tools\mailsend-go-v1.0.14-windows-amd64.exe"><button id="save-path" class="edit" type="button">保存</button></div></div>
+      <div class="section-head"><div><h2 id="accounts-title">送信元アカウント</h2><p>先頭の送信元が、新規作成時のデフォルトです。</p></div><span id="count" class="count">— / 10</span></div>
+      <div id="status" class="status" role="status">設定を読み込んでいます…</div>
+      <div id="accounts" class="account-list" aria-live="polite"></div>
+      <button id="add" class="add-button" type="button"><span class="plus" aria-hidden="true">＋</span><span>送信元を追加</span></button>
+      <p class="footer-note">設定はこのPCの <strong>smtp.ini</strong>、パスワードはWindowsの資格情報マネージャーに保存されます。</p>
+    </section>
+  </main>
+  <div id="overlay" class="overlay" hidden>
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <header class="dialog-head"><div><div class="eyebrow">SMTP ACCOUNT</div><h2 id="dialog-title">送信サーバーの設定</h2></div><button id="close" class="icon-button close" type="button" aria-label="閉じる">×</button></header>
+      <form id="account-form">
+        <div class="fields">
+          <label class="field full"><span>送信元メールアドレス <b>*</b></span><input id="from" name="from" type="email" autocomplete="off" required maxlength="254" placeholder="name@example.com" title="送信元として表示するメールアドレスです。SMTPサーバーがそのアドレスでの送信を許可している必要があります。"></label>
+          <label class="field full"><span>ホスト名 <b>*</b></span><input id="host" name="host" autocomplete="off" required maxlength="253" placeholder="example.sakura.ne.jp" title="SMTP送信サーバーのホスト名です。さくらのレンタルサーバーでは通常、初期ドメインを使用します。"></label>
+          <label class="field"><span>暗号化形式 <b>*</b></span><select id="security" name="security" title="SMTPサーバーとの通信の暗号化方式です。サーバーが指定する方式を選んでください。"><option value="starttls">STARTTLS</option><option value="ssl">SSL / TLS</option><option value="none">なし</option></select></label>
+          <label class="field"><span>ポート番号 <b>*</b></span><input id="port" name="port" type="number" min="1" max="65535" required title="SMTPサーバーのポート番号です。方式を選ぶと一般的な値が入りますが、必要に応じて変更できます。"></label>
+          <label class="check full" title="SMTPサーバーの証明書を検証します。暗号化なしの場合は使用しません。"><input type="checkbox" id="verify_certificate" name="verify_certificate" checked><span>証明書を検証する</span></label>
+          <label class="field full"><span>ユーザー名</span><input id="username" name="username" autocomplete="off" maxlength="254" placeholder="SMTP認証ユーザー名" title="SMTP認証に使うユーザー名です。認証不要のサーバーではユーザー名とパスワードを両方空欄にします。"></label>
+          <label class="field full"><span>パスワード</span><div class="password-wrap"><input id="password" name="password" type="password" autocomplete="new-password" maxlength="1024" title="SMTP認証パスワードです。既存アカウントの編集時に空欄なら現在のパスワードを維持します。"><button id="show-password" type="button" aria-label="パスワードを表示" aria-pressed="false">表示</button></div></label>
+          <label class="field full"><span>送信元表示名</span><input id="display_name" name="display_name" autocomplete="off" maxlength="200" placeholder="例：サンプル 太郎" title="メールの差出人としてアドレスと一緒に表示される名前です。空欄にもできます。"></label>
+          <label class="field full"><span>送信履歴 Bcc</span><input id="bcc" name="bcc" autocomplete="off" maxlength="1024" placeholder="history@gmail.com" title="送信履歴を受け取るメールアドレスです。空欄で無効、複数の場合はカンマまたはセミコロンで区切ります。"></label>
+        </div>
+        <p id="transport-note" class="transport-note" role="status" hidden></p><p id="form-error" class="form-error" role="alert" hidden></p>
+        <footer class="dialog-footer"><button type="button" id="cancel" class="secondary">キャンセル</button><button type="submit" id="save" class="primary">登録</button></footer>
+      </form>
+    </section>
+  </div>
+  <script src="popup.js"></script>
+</body></html>
