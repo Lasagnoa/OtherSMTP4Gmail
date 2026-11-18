@@ -219,6 +219,32 @@
     }
     return result;
   }
+  function plainBody(body) {
+    const text = body.innerText;
+    const blankLines = [...body.querySelectorAll('br:only-child')].map(br => {
+      const line = br.closest('div');
+      if (line === body) return false;
+      for (let node = br; node !== line; node = node.parentNode) {
+        if (node.parentNode.childNodes.length !== 1) return false;
+      }
+      return shown(br) && getComputedStyle(br).visibility === 'visible' && getComputedStyle(line).display === 'block';
+    });
+    if (!blankLines.some(Boolean)) return text;
+
+    // A placeholder BR adds a break on top of the empty line's block boundaries in innerText.
+    let marker = '\uE000';
+    while (text.includes(marker)) marker += '\uE001';
+    const copy = body.cloneNode(true);
+    copy.inert = true;
+    copy.style.position = 'fixed';
+    copy.style.opacity = '0';
+    [...copy.querySelectorAll('br:only-child')].forEach((br, index) => {
+      if (blankLines[index]) br.replaceWith(marker);
+    });
+    body.after(copy);
+    try { return copy.innerText.replaceAll(marker, ''); }
+    finally { copy.remove(); }
+  }
   function snapshot(root) {
     const fields = recipientFields(root), body = bodyBox(root), attached = attachmentState(root);
     const account = selected(root);
@@ -237,7 +263,7 @@
       else if (!bcc.length) throw Error('返信先が送信元アドレスだけです。宛先を確認してください。');
     }
     if (!to.length) throw Error('Toに宛先を指定してください。');
-    const value = {accountId:account.id,expectedFrom:account.from,to,cc,bcc,subject:subjectFor(root),body:body.innerText,urls:attached.urls,reply};
+    const value = {accountId:account.id,expectedFrom:account.from,to,cc,bcc,subject:subjectFor(root),body:plainBody(body),urls:attached.urls,reply};
     if (!value.body.length) throw Error('本文が空です。mailsend-goの仕様により、1文字以上入力してください。');
     if (value.body.includes('\\n')) throw Error('本文に文字列「\\n」があります。送信ツールで改行に変換されるため、送信を中止しました。');
     return value;
